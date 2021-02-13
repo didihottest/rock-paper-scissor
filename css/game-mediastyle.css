@@ -1,0 +1,50 @@
+@media (max-width:992px) {
+
+    /* main-title-start */
+    #main-title {
+        text-align: center
+    }
+
+    .back-button {
+        margin-bottom: 2%;
+    }
+    
+    .logo {
+        margin: 0 auto;
+        margin-bottom: 2%;
+    }
+
+    /* main-title-end */
+
+    /* game-section-start */
+
+    .player {
+        color: black;
+        font-size: 1.5rem;
+    }
+    /* game-section-end */
+
+    /* refresh-section-start */
+    /* refresh-section-end */
+}
+
+@media (max-width:576px) {
+
+    /* main-title-start */
+
+    /* main-title-end */
+
+    /* game-section-start */
+
+    .player {
+        color: black;
+        font-size: 1.2rem;
+    }
+
+    /* game-section-end */
+
+    /* refresh-section-start */
+    
+    /* refresh-section-end */   
+
+}

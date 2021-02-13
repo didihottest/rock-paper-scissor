@@ -1,3 +1,60 @@
+/* body */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container-fluid {
+    padding: 3% 3%;
+}
+
+/* main-container */
+
 .main-container {
     background-color: #9C835F;
 }
+
+/* main-title-start */
+
+.back-button-img {
+    text-decoration: none;
+    color: #724C21;
+    height: 2.5em;
+}
+
+.logo {
+    height: 4.5em;
+    width: auto;
+}
+
+.game-title {
+    color: #F9B23D;
+}
+
+/* main-title-end */
+
+/* game-section-start */
+
+.game-img-container {
+    padding: 15%;
+}
+
+.player {
+    color: black;
+    font-weight: 700;
+    font-size: 2.25rem;
+}
+
+/* game-section-end */
+
+/* refresh-section-start */
+
+.refresh {
+    text-align: center;
+}
+
+.refresh-img {
+    max-height: 71px;
+}
+
+/* refresh-section-end */
