@@ -22,6 +22,11 @@
         color: black;
         font-size: 1.5rem;
     }
+
+    .win-lose {
+        font-size: 4rem;
+    }
+    
     /* game-section-end */
 
     /* refresh-section-start */
@@ -40,6 +45,11 @@
         color: black;
         font-size: 1.2rem;
     }
+
+    .win-lose {
+        font-size: 2rem;
+    }
+    
 
     /* game-section-end */
 
