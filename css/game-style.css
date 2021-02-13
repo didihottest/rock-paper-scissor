@@ -5,10 +5,14 @@ body {
 }
 
 .container-fluid {
-    padding: 3% 3%;
+    padding: 3% 7%;
 }
 
 /* main-container */
+
+#main-title.container-fluid {
+    padding: 3% 3%;
+}
 
 .main-container {
     background-color: #9C835F;
@@ -37,7 +41,15 @@ body {
 
 .game-img-container {
     padding: 15%;
+    
 }
+
+.game-img-clicked {
+    background-color: #C4C4C4;
+    border-radius: 30px;
+}
+
+
 
 .player {
     color: black;
@@ -45,11 +57,31 @@ body {
     font-size: 2.25rem;
 }
 
-.win-lose {
+.vs {
     text-align: center;
     color: red;
     font-weight: 700;
     font-size: 7rem;
+}
+
+.draw {
+    background-color: #035B0C;
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    padding: 10% 20%;
+    text-align: center;
+    transform: rotate(-28.87deg);
+}
+
+.win-or-lose {
+    background-color: #4C9654;
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    padding: 10% 20%;
+    text-align: center;
+    transform: rotate(-28.87deg);
 }
 
 /* game-section-end */

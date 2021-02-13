@@ -23,7 +23,7 @@
         font-size: 1.5rem;
     }
 
-    .win-lose {
+    .vs {
         font-size: 4rem;
     }
     
@@ -46,8 +46,12 @@
         font-size: 1.2rem;
     }
 
-    .win-lose {
-        font-size: 2rem;
+    .vs {
+        font-size: 5rem;
+    }
+
+    .draw {
+        font-size: 1rem;
     }
     
 
