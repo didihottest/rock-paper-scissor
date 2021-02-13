@@ -1,7 +1,9 @@
 var computerChoose = Math.floor((Math.random() * 3) + 1);
 console.log(computerChoose);
 
-
+document.querySelector(".refresh").addEventListener("click", function(){
+    location.reload();
+});
 
 
 document.querySelector(".rock-p").addEventListener("click", function () {
