@@ -45,34 +45,34 @@ document.querySelector(".scissor-p").addEventListener("click", function () {
 let winLose = document.querySelector(".win-lose");
 function playGame(playerChoose, computerChoose) {
     if (playerChoose === computerChoose) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
+        vsDrawPlayerWin();
         winLose.innerHTML = "DRAW";
     } else if (playerChoose === 1 && computerChoose === 2) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "COM WIN";
+        vsDrawComputerWin();
     } else if (playerChoose === 1 && computerChoose === 3) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "PLAYER 1 WIN";
+        vsDrawPlayerWin();
     } else if (playerChoose === 2 && computerChoose === 1) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "PLAYER 1 WIN";
+        vsDrawPlayerWin();
     } else if (playerChoose === 2 && computerChoose === 3) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "COM WIN";
+        vsDrawComputerWin();
     } else if (playerChoose === 3 && computerChoose === 1) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "COM WIN";
+        vsDrawComputerWin();
     } else if (playerChoose === 3 && computerChoose === 2) {
-        winLose.classList.remove("vs")
-        winLose.classList.add("draw")
-        winLose.innerHTML = "PLAYER 1 WIN";
+        vsDrawPlayerWin();
     }
+}
+
+// win lose add class
+function vsDrawPlayerWin() {
+    winLose.classList.remove("vs");
+    winLose.classList.add("draw");
+    winLose.innerHTML = "PLAYER 1 WIN";
+}
+
+function vsDrawComputerWin() {
+    winLose.classList.remove("vs");
+    winLose.classList.add("draw");
+    winLose.innerHTML = "COM WIN";
 }
 
 // computer padding
@@ -80,7 +80,7 @@ function playGame(playerChoose, computerChoose) {
 function comEffect(computerChoose) {
     if (computerChoose === 1) {
         document.querySelector(".rock-c").classList.add("game-img-clicked");
-        document.querySelector(".paper-c").classList.remove("game-img-clicked")
+        document.querySelector(".paper-c").classList.remove("game-img-clicked");
         document.querySelector(".scissor-c").classList.remove("game-img-clicked");
     } else if (computerChoose === 2) {
         document.querySelector(".paper-c").classList.add("game-img-clicked");
