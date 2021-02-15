@@ -7,8 +7,9 @@ document.querySelector(".refresh").addEventListener("click", function(){
 // player choose algorithm
 document.querySelector(".rock-p").addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer :"+ computerChoose);
+    console.log("computer : " + computerChoose);
     playerChoose = 1;
+    console.log("player : " + playerChoose);
     document.querySelector(".rock-p").classList.add("game-img-clicked");
     document.querySelector(".paper-p").classList.remove("game-img-clicked")
     document.querySelector(".scissor-p").classList.remove("game-img-clicked");
@@ -20,6 +21,7 @@ document.querySelector(".paper-p").addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
     console.log("computer :"+ computerChoose);
     playerChoose = 2;
+    console.log("player : " + playerChoose);
     document.querySelector(".paper-p").classList.add("game-img-clicked");
     document.querySelector(".scissor-p").classList.remove("game-img-clicked");
     document.querySelector(".rock-p").classList.remove("game-img-clicked");
@@ -31,6 +33,7 @@ document.querySelector(".scissor-p").addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
     console.log("computer :"+ computerChoose);
     playerChoose = 3;
+    console.log("player : " + playerChoose);
     document.querySelector(".scissor-p").classList.add("game-img-clicked");
     document.querySelector(".rock-p").classList.remove("game-img-clicked");
     document.querySelector(".paper-p").classList.remove("game-img-clicked");
