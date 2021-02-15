@@ -1,6 +1,5 @@
-
 // refresh button
-document.querySelector(".refresh").addEventListener("click", function(){
+document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
 });
 
@@ -19,7 +18,7 @@ document.querySelector(".rock-p").addEventListener("click", function () {
 
 document.querySelector(".paper-p").addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer :"+ computerChoose);
+    console.log("computer :" + computerChoose);
     playerChoose = 2;
     console.log("player : " + playerChoose);
     document.querySelector(".paper-p").classList.add("game-img-clicked");
@@ -31,7 +30,7 @@ document.querySelector(".paper-p").addEventListener("click", function () {
 
 document.querySelector(".scissor-p").addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer :"+ computerChoose);
+    console.log("computer :" + computerChoose);
     playerChoose = 3;
     console.log("player : " + playerChoose);
     document.querySelector(".scissor-p").classList.add("game-img-clicked");
@@ -43,6 +42,7 @@ document.querySelector(".scissor-p").addEventListener("click", function () {
 
 // game logic
 let winLose = document.querySelector(".win-lose");
+
 function playGame(playerChoose, computerChoose) {
     if (playerChoose === computerChoose) {
         vsDrawPlayerWin();
