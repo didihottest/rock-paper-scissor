@@ -39,6 +39,11 @@ body {
 
 /* game-section-start */
 
+#game-content {
+    padding-left:15%;
+    padding-right: 15%;
+}
+
 .game-img {
     max-height: 10rem;
     padding: 5% 5%;
