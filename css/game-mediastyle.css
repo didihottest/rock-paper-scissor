@@ -17,6 +17,10 @@
     /* main-title-end */
 
     /* game-section-start */
+    #game-content {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
 
     .player {
         color: black;
