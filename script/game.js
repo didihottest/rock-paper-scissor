@@ -15,7 +15,7 @@ document.querySelector(".refresh").addEventListener("click", function () {
 
 // player choose algorithm
 rockPlayerClass.addEventListener("click", function () {
-    var computerChoose = Math.floor((Math.random() * 3) + 1);
+    var computerChoose = computerChoiceLogic();
     playerChoose = 1;
     rockPlayerClass.classList.add("game-img-clicked");
     paperPlayerClass.classList.remove("game-img-clicked")
@@ -25,7 +25,7 @@ rockPlayerClass.addEventListener("click", function () {
 });
 
 paperPlayerClass.addEventListener("click", function () {
-    var computerChoose = Math.floor((Math.random() * 3) + 1);
+    var computerChoose = computerChoiceLogic();
     playerChoose = 2;
     paperPlayerClass.classList.add("game-img-clicked");
     scissorPlayerClass.classList.remove("game-img-clicked");
@@ -35,7 +35,7 @@ paperPlayerClass.addEventListener("click", function () {
 });
 
 scissorPlayerClass.addEventListener("click", function () {
-    var computerChoose = Math.floor((Math.random() * 3) + 1);
+    var computerChoose = computerChoiceLogic();
     playerChoose = 3;
     scissorPlayerClass.classList.add("game-img-clicked");
     rockPlayerClass.classList.remove("game-img-clicked");
@@ -43,6 +43,11 @@ scissorPlayerClass.addEventListener("click", function () {
     comEffect(computerChoose);
     playGame(playerChoose, computerChoose);
 });
+
+// computer random choice logic 
+function computerChoiceLogic() {
+    return Math.floor((Math.random() * 3) + 1);
+}
 
 // game logic
 function playGame(playerChoose, computerChoose) {
@@ -64,7 +69,7 @@ function playGame(playerChoose, computerChoose) {
 }
 
 // win lose draw add class
-function bothDraw () {
+function bothDraw() {
     winLose.classList.remove("vs");
     winLose.classList.remove("win-or-lose");
     winLose.classList.add("draw");

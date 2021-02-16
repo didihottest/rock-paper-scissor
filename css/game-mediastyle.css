@@ -8,7 +8,7 @@
     .back-button {
         margin-bottom: 2%;
     }
-    
+
     .logo {
         margin: 0 auto;
         margin-bottom: 2%;
@@ -30,7 +30,9 @@
     .vs {
         font-size: 4rem;
     }
-    
+
+
+
     /* game-section-end */
 
     /* refresh-section-start */
@@ -47,7 +49,7 @@
 
     .player {
         color: black;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .vs {
@@ -58,10 +60,14 @@
         font-size: 0.9rem;
     }
 
+    .win-or-lose {
+        font-size: 0.9rem;
+    }
+
     /* game-section-end */
 
     /* refresh-section-start */
-    
-    /* refresh-section-end */   
+
+    /* refresh-section-end */
 
 }
