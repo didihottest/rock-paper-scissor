@@ -1,77 +1,87 @@
+// Document Selector
+let rockPlayerClass = document.querySelector(".rock-p");
+let paperPlayerClass = document.querySelector(".paper-p");
+let scissorPlayerClass = document.querySelector(".scissor-p");
+let rockCompClass = document.querySelector(".rock-c");
+let paperCompClass = document.querySelector(".paper-c");
+let scissorCompClass = document.querySelector(".scissor-c");
+let winLose = document.querySelector(".win-lose");
+
+
 // refresh button
 document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
 });
 
 // player choose algorithm
-document.querySelector(".rock-p").addEventListener("click", function () {
+rockPlayerClass.addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer : " + computerChoose);
     playerChoose = 1;
-    console.log("player : " + playerChoose);
-    document.querySelector(".rock-p").classList.add("game-img-clicked");
-    document.querySelector(".paper-p").classList.remove("game-img-clicked")
-    document.querySelector(".scissor-p").classList.remove("game-img-clicked");
+    rockPlayerClass.classList.add("game-img-clicked");
+    paperPlayerClass.classList.remove("game-img-clicked")
+    scissorPlayerClass.classList.remove("game-img-clicked");
     comEffect(computerChoose);
     playGame(playerChoose, computerChoose);
 });
 
-document.querySelector(".paper-p").addEventListener("click", function () {
+paperPlayerClass.addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer :" + computerChoose);
     playerChoose = 2;
-    console.log("player : " + playerChoose);
-    document.querySelector(".paper-p").classList.add("game-img-clicked");
-    document.querySelector(".scissor-p").classList.remove("game-img-clicked");
-    document.querySelector(".rock-p").classList.remove("game-img-clicked");
+    paperPlayerClass.classList.add("game-img-clicked");
+    scissorPlayerClass.classList.remove("game-img-clicked");
+    rockPlayerClass.classList.remove("game-img-clicked");
     comEffect(computerChoose);
     playGame(playerChoose, computerChoose);
 });
 
-document.querySelector(".scissor-p").addEventListener("click", function () {
+scissorPlayerClass.addEventListener("click", function () {
     var computerChoose = Math.floor((Math.random() * 3) + 1);
-    console.log("computer :" + computerChoose);
     playerChoose = 3;
-    console.log("player : " + playerChoose);
-    document.querySelector(".scissor-p").classList.add("game-img-clicked");
-    document.querySelector(".rock-p").classList.remove("game-img-clicked");
-    document.querySelector(".paper-p").classList.remove("game-img-clicked");
+    scissorPlayerClass.classList.add("game-img-clicked");
+    rockPlayerClass.classList.remove("game-img-clicked");
+    paperPlayerClass.classList.remove("game-img-clicked");
     comEffect(computerChoose);
     playGame(playerChoose, computerChoose);
 });
 
 // game logic
-let winLose = document.querySelector(".win-lose");
-
 function playGame(playerChoose, computerChoose) {
     if (playerChoose === computerChoose) {
-        vsDrawPlayerWin();
-        winLose.innerHTML = "DRAW";
+        bothDraw();
     } else if (playerChoose === 1 && computerChoose === 2) {
-        vsDrawComputerWin();
+        computerWin();
     } else if (playerChoose === 1 && computerChoose === 3) {
-        vsDrawPlayerWin();
+        playerWin();
     } else if (playerChoose === 2 && computerChoose === 1) {
-        vsDrawPlayerWin();
+        playerWin();
     } else if (playerChoose === 2 && computerChoose === 3) {
-        vsDrawComputerWin();
+        computerWin();
     } else if (playerChoose === 3 && computerChoose === 1) {
-        vsDrawComputerWin();
+        computerWin();
     } else if (playerChoose === 3 && computerChoose === 2) {
-        vsDrawPlayerWin();
+        playerWin();
     }
 }
 
-// win lose add class
-function vsDrawPlayerWin() {
+// win lose draw add class
+function bothDraw () {
     winLose.classList.remove("vs");
+    winLose.classList.remove("win-or-lose");
     winLose.classList.add("draw");
+    winLose.innerHTML = "DRAW";
+}
+
+function playerWin() {
+    winLose.classList.remove("vs");
+    winLose.classList.remove("draw");
+    winLose.classList.add("win-or-lose");
     winLose.innerHTML = "PLAYER 1 WIN";
 }
 
-function vsDrawComputerWin() {
+function computerWin() {
     winLose.classList.remove("vs");
-    winLose.classList.add("draw");
+    winLose.classList.remove("draw");
+    winLose.classList.add("win-or-lose");
     winLose.innerHTML = "COM WIN";
 }
 
@@ -79,16 +89,16 @@ function vsDrawComputerWin() {
 
 function comEffect(computerChoose) {
     if (computerChoose === 1) {
-        document.querySelector(".rock-c").classList.add("game-img-clicked");
-        document.querySelector(".paper-c").classList.remove("game-img-clicked");
-        document.querySelector(".scissor-c").classList.remove("game-img-clicked");
+        rockCompClass.classList.add("game-img-clicked");
+        paperCompClass.classList.remove("game-img-clicked");
+        scissorCompClass.classList.remove("game-img-clicked");
     } else if (computerChoose === 2) {
-        document.querySelector(".paper-c").classList.add("game-img-clicked");
-        document.querySelector(".scissor-c").classList.remove("game-img-clicked");
-        document.querySelector(".rock-c").classList.remove("game-img-clicked");
+        paperCompClass.classList.add("game-img-clicked");
+        scissorCompClass.classList.remove("game-img-clicked");
+        rockCompClass.classList.remove("game-img-clicked");
     } else if (computerChoose === 3) {
-        document.querySelector(".scissor-c").classList.add("game-img-clicked");
-        document.querySelector(".rock-c").classList.remove("game-img-clicked");
-        document.querySelector(".paper-c").classList.remove("game-img-clicked");
+        scissorCompClass.classList.add("game-img-clicked");
+        rockCompClass.classList.remove("game-img-clicked");
+        paperCompClass.classList.remove("game-img-clicked");
     }
 }
