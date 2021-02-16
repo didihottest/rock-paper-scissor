@@ -7,7 +7,6 @@ let paperCompClass = document.querySelector(".paper-c");
 let scissorCompClass = document.querySelector(".scissor-c");
 let winLose = document.querySelector(".win-lose");
 
-
 // refresh button
 document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
