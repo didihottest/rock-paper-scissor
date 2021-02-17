@@ -14,18 +14,18 @@ document.querySelector(".refresh").addEventListener("click", function () {
 
 // player choose algorithm
 rockPlayerClass.addEventListener("click", function () {
-    var computerChoose = computerChoiceLogic();
-    playerChoose = 1;
+    let computerChoose = computerChoiceLogic();
+    let playerChoose = 1;
     rockPlayerClass.classList.add("game-img-clicked");
-    paperPlayerClass.classList.remove("game-img-clicked")
+    paperPlayerClass.classList.remove("game-img-clicked");
     scissorPlayerClass.classList.remove("game-img-clicked");
     comEffect(computerChoose);
     playGame(playerChoose, computerChoose);
 });
 
 paperPlayerClass.addEventListener("click", function () {
-    var computerChoose = computerChoiceLogic();
-    playerChoose = 2;
+    let computerChoose = computerChoiceLogic();
+    let playerChoose = 2;
     paperPlayerClass.classList.add("game-img-clicked");
     scissorPlayerClass.classList.remove("game-img-clicked");
     rockPlayerClass.classList.remove("game-img-clicked");
@@ -34,8 +34,8 @@ paperPlayerClass.addEventListener("click", function () {
 });
 
 scissorPlayerClass.addEventListener("click", function () {
-    var computerChoose = computerChoiceLogic();
-    playerChoose = 3;
+    let computerChoose = computerChoiceLogic();
+    let playerChoose = 3;
     scissorPlayerClass.classList.add("game-img-clicked");
     rockPlayerClass.classList.remove("game-img-clicked");
     paperPlayerClass.classList.remove("game-img-clicked");
