@@ -12,97 +12,108 @@ document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
 });
 
-// player choose algorithm
+// player choose action listener
 rockPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 1;
-    rockPlayerClass.classList.add("game-img-clicked");
-    paperPlayerClass.classList.remove("game-img-clicked");
-    scissorPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
+    let rockAction = new Action(1);
+    rockAction.playGame();
+    rockAction.playerEffect();
+    rockAction.comEffect();
 });
 
 paperPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 2;
-    paperPlayerClass.classList.add("game-img-clicked");
-    scissorPlayerClass.classList.remove("game-img-clicked");
-    rockPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
+    let paperAction = new Action(2);
+    paperAction.playGame();
+    paperAction.playerEffect();
+    paperAction.comEffect();
 });
 
 scissorPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 3;
-    scissorPlayerClass.classList.add("game-img-clicked");
-    rockPlayerClass.classList.remove("game-img-clicked");
-    paperPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
+    let scissorAction = new Action(3);
+    scissorAction.playGame();
+    scissorAction.playerEffect();
+    scissorAction.comEffect();
 });
 
-// computer random choice logic 
-function computerChoiceLogic() {
-    return Math.floor((Math.random() * 3) + 1);
-}
-
-// game logic
-function playGame(playerChoose, computerChoose) {
-    if (playerChoose === computerChoose) {
-        bothDraw();
-    } else if (playerChoose === 1 && computerChoose === 2) {
-        computerWin();
-    } else if (playerChoose === 1 && computerChoose === 3) {
-        playerWin();
-    } else if (playerChoose === 2 && computerChoose === 1) {
-        playerWin();
-    } else if (playerChoose === 2 && computerChoose === 3) {
-        computerWin();
-    } else if (playerChoose === 3 && computerChoose === 1) {
-        computerWin();
-    } else if (playerChoose === 3 && computerChoose === 2) {
-        playerWin();
+// action class when player has choosen
+class Action {
+    constructor(playerChoose){
+        this.playerChoose = playerChoose;
+        this.computerChoose = this.computerChoiceLogic();
     }
-}
-
-// win lose draw add class
-function bothDraw() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("win-or-lose");
-    winLose.classList.add("draw");
-    winLose.innerHTML = "DRAW";
-}
-
-function playerWin() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("draw");
-    winLose.classList.add("win-or-lose");
-    winLose.innerHTML = "PLAYER 1 WIN";
-}
-
-function computerWin() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("draw");
-    winLose.classList.add("win-or-lose");
-    winLose.innerHTML = "COM WIN";
-}
-
-// computer padding
-
-function comEffect(computerChoose) {
-    if (computerChoose === 1) {
-        rockCompClass.classList.add("game-img-clicked");
-        paperCompClass.classList.remove("game-img-clicked");
-        scissorCompClass.classList.remove("game-img-clicked");
-    } else if (computerChoose === 2) {
-        paperCompClass.classList.add("game-img-clicked");
-        scissorCompClass.classList.remove("game-img-clicked");
-        rockCompClass.classList.remove("game-img-clicked");
-    } else if (computerChoose === 3) {
-        scissorCompClass.classList.add("game-img-clicked");
-        rockCompClass.classList.remove("game-img-clicked");
-        paperCompClass.classList.remove("game-img-clicked");
+    // computer random choice logic 
+    computerChoiceLogic() {
+        return Math.floor((Math.random() * 3) + 1);
     }
+
+    // padding effect when player has choosen
+    playerEffect(){
+        if (this.playerChoose === 1) {
+            rockPlayerClass.classList.add("game-img-clicked");
+            paperPlayerClass.classList.remove("game-img-clicked");
+            scissorPlayerClass.classList.remove("game-img-clicked");
+        } else if (this.playerChoose === 2) {
+            paperPlayerClass.classList.add("game-img-clicked");
+            scissorPlayerClass.classList.remove("game-img-clicked");
+            rockPlayerClass.classList.remove("game-img-clicked");
+        } else if (this.playerChoose === 3) {
+            scissorPlayerClass.classList.add("game-img-clicked");
+            rockPlayerClass.classList.remove("game-img-clicked");
+            paperPlayerClass.classList.remove("game-img-clicked");
+        }
+    }
+    // padding effect when computer has choosen
+    comEffect() {
+        if (this.computerChoose === 1) {
+            rockCompClass.classList.add("game-img-clicked");
+            paperCompClass.classList.remove("game-img-clicked");
+            scissorCompClass.classList.remove("game-img-clicked");
+        } else if (this.computerChoose === 2) {
+            paperCompClass.classList.add("game-img-clicked");
+            scissorCompClass.classList.remove("game-img-clicked");
+            rockCompClass.classList.remove("game-img-clicked");
+        } else if (this.computerChoose === 3) {
+            scissorCompClass.classList.add("game-img-clicked");
+            rockCompClass.classList.remove("game-img-clicked");
+            paperCompClass.classList.remove("game-img-clicked");
+        }
+    }
+    // game logic
+    playGame() {
+        if (this.playerChoose === this.computerChoose) {
+            this.bothDraw();
+        } else if (this.playerChoose === 1 && this.computerChoose === 2 || 
+            this.playerChoose === 2 && this.computerChoose === 3 || 
+            this.playerChoose === 3 && this.computerChoose === 1) {
+            this.computerWin();
+        } else if (this.playerChoose === 1 && this.computerChoose === 3 || 
+            this.playerChoose === 2 && this.computerChoose === 1 || 
+            this.playerChoose === 3 && this.computerChoose === 2) {
+            this.playerWin();
+        }
+    }
+
+    // match indicators 
+    bothDraw() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("win-or-lose");
+        winLose.classList.add("draw");
+        winLose.innerHTML = "DRAW";
+    }
+    
+    playerWin() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("draw");
+        winLose.classList.add("win-or-lose");
+        winLose.innerHTML = "PLAYER 1 WIN";
+    }
+    
+    computerWin() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("draw");
+        winLose.classList.add("win-or-lose");
+        winLose.innerHTML = "COM WIN";
+    }
+
 }
+
+
