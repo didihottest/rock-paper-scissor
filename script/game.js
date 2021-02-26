@@ -67,7 +67,7 @@ class PlayerAction {
         return computerChoosen;
     }
 }
-
+// styling when player and computer has choosen
 class ChoiceMarker {
     constructor(human, computer) {
         this.human = human;
