@@ -7,102 +7,157 @@ let paperCompClass = document.querySelector(".paper-c");
 let scissorCompClass = document.querySelector(".scissor-c");
 let winLose = document.querySelector(".win-lose");
 
+// choices option
+let choices = ["rock", "paper", "scissor"];
+
+// scores
+let playerScores = 0;
+let computerScores = 0;
+
+// history
+let playerChooseHistory = [];
+let computerChooseHistory = [];
+
+// player choose action listener
+rockPlayerClass.addEventListener("click", function () {
+    humanChoosen = choices[0];
+    clickAction(humanChoosen);
+});
+
+paperPlayerClass.addEventListener("click", function () {
+    humanChoosen = choices[1];
+    clickAction(humanChoosen);
+});
+
+scissorPlayerClass.addEventListener("click", function () {
+    humanChoosen = choices[2];
+    clickAction(humanChoosen);
+});
+
+// action when rock paper scissor button pressed
+function clickAction(humanChoosen) {
+    let humanAction = new PlayerAction(humanChoosen);
+    let computerAction = new PlayerAction();
+    let choiceOfHuman = humanAction.humanChoice();
+    let choiceOfComputer = computerAction.computerChoiceLogic();
+    let game = new GameLogic(choiceOfHuman, choiceOfComputer);
+    let choosenStyle = new ChoiceMarker(choiceOfHuman, choiceOfComputer)
+    console.log(`player choose ${humanChoosen}`);
+    playerChooseHistory.push(humanChoosen);
+    console.log(`player choice history ${playerChooseHistory}`);
+    choosenStyle.playerEffect();
+    choosenStyle.comEffect();
+    game.playGame();
+}
+
+// action class when player has choosen
+class PlayerAction {
+    constructor(playerChoose) {
+        this.playerChoose = playerChoose;
+    }
+    humanChoice() {
+        return this.playerChoose;
+    }
+    // computer random choice logic 
+    computerChoiceLogic() {
+        let computerChoosen = choices[Math.floor((Math.random() * 3))];
+        console.log(`computer choose ${computerChoosen}`);
+        computerChooseHistory.push(computerChoosen);
+        console.log(`computer choice history ${computerChooseHistory}`);
+        return computerChoosen;
+    }
+}
+
+class ChoiceMarker {
+    constructor(human, computer) {
+        this.human = human;
+        this.computer = computer;
+    }
+    // padding effect when player has choosen
+    playerEffect() {
+        if (this.human === "rock") {
+            rockPlayerClass.classList.add("game-img-clicked");
+            paperPlayerClass.classList.remove("game-img-clicked");
+            scissorPlayerClass.classList.remove("game-img-clicked");
+        } else if (this.human === "paper") {
+            paperPlayerClass.classList.add("game-img-clicked");
+            scissorPlayerClass.classList.remove("game-img-clicked");
+            rockPlayerClass.classList.remove("game-img-clicked");
+        } else if (this.human === "scissor") {
+            scissorPlayerClass.classList.add("game-img-clicked");
+            rockPlayerClass.classList.remove("game-img-clicked");
+            paperPlayerClass.classList.remove("game-img-clicked");
+        }
+    }
+    // padding effect when computer has choosen
+    comEffect() {
+        if (this.computer === "rock") {
+            rockCompClass.classList.add("game-img-clicked");
+            paperCompClass.classList.remove("game-img-clicked");
+            scissorCompClass.classList.remove("game-img-clicked");
+        } else if (this.computer === "paper") {
+            paperCompClass.classList.add("game-img-clicked");
+            scissorCompClass.classList.remove("game-img-clicked");
+            rockCompClass.classList.remove("game-img-clicked");
+        } else if (this.computer === "scissor") {
+            scissorCompClass.classList.add("game-img-clicked");
+            rockCompClass.classList.remove("game-img-clicked");
+            paperCompClass.classList.remove("game-img-clicked");
+        }
+    }
+}
+
+// game logic
+class GameLogic {
+
+    constructor(human, computer) {
+        this.human = human;
+        this.computer = computer;
+    }
+
+    playGame() {
+        if (this.human === this.computer) {
+            this.bothDraw();
+            console.log(`Draw`);
+        } else if (this.human === "rock" && this.computer === "paper" ||
+            this.human === "paper" && this.computer === "scissor" ||
+            this.human === "scissor" && this.computer === "rock") {
+            this.computerWin();
+            computerScores++;
+            console.log(`${this.computer} over ${this.human} Computer Wins`);
+        } else if (this.human === "rock" && this.computer === "scissor" ||
+            this.human === "paper" && this.computer === "rock" ||
+            this.human === "scissor" && this.computer === "paper") {
+            this.playerWin();
+            console.log(`${this.human} over ${this.computer} Player Wins`);
+            playerScores++;
+        }
+
+        console.log(`Player Scores : ${playerScores} Computer Scores : ${computerScores}`);
+    }
+    // match indicators 
+    bothDraw() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("win-or-lose");
+        winLose.classList.add("draw");
+        winLose.innerHTML = "DRAW";
+    }
+
+    playerWin() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("draw");
+        winLose.classList.add("win-or-lose");
+        winLose.innerHTML = "PLAYER 1 WIN";
+    }
+
+    computerWin() {
+        winLose.classList.remove("vs");
+        winLose.classList.remove("draw");
+        winLose.classList.add("win-or-lose");
+        winLose.innerHTML = "COM WIN";
+    }
+}
 // refresh button
 document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
 });
-
-// player choose algorithm
-rockPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 1;
-    rockPlayerClass.classList.add("game-img-clicked");
-    paperPlayerClass.classList.remove("game-img-clicked");
-    scissorPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
-});
-
-paperPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 2;
-    paperPlayerClass.classList.add("game-img-clicked");
-    scissorPlayerClass.classList.remove("game-img-clicked");
-    rockPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
-});
-
-scissorPlayerClass.addEventListener("click", function () {
-    let computerChoose = computerChoiceLogic();
-    let playerChoose = 3;
-    scissorPlayerClass.classList.add("game-img-clicked");
-    rockPlayerClass.classList.remove("game-img-clicked");
-    paperPlayerClass.classList.remove("game-img-clicked");
-    comEffect(computerChoose);
-    playGame(playerChoose, computerChoose);
-});
-
-// computer random choice logic 
-function computerChoiceLogic() {
-    return Math.floor((Math.random() * 3) + 1);
-}
-
-// game logic
-function playGame(playerChoose, computerChoose) {
-    if (playerChoose === computerChoose) {
-        bothDraw();
-    } else if (playerChoose === 1 && computerChoose === 2) {
-        computerWin();
-    } else if (playerChoose === 1 && computerChoose === 3) {
-        playerWin();
-    } else if (playerChoose === 2 && computerChoose === 1) {
-        playerWin();
-    } else if (playerChoose === 2 && computerChoose === 3) {
-        computerWin();
-    } else if (playerChoose === 3 && computerChoose === 1) {
-        computerWin();
-    } else if (playerChoose === 3 && computerChoose === 2) {
-        playerWin();
-    }
-}
-
-// win lose draw add class
-function bothDraw() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("win-or-lose");
-    winLose.classList.add("draw");
-    winLose.innerHTML = "DRAW";
-}
-
-function playerWin() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("draw");
-    winLose.classList.add("win-or-lose");
-    winLose.innerHTML = "PLAYER 1 WIN";
-}
-
-function computerWin() {
-    winLose.classList.remove("vs");
-    winLose.classList.remove("draw");
-    winLose.classList.add("win-or-lose");
-    winLose.innerHTML = "COM WIN";
-}
-
-// computer padding
-
-function comEffect(computerChoose) {
-    if (computerChoose === 1) {
-        rockCompClass.classList.add("game-img-clicked");
-        paperCompClass.classList.remove("game-img-clicked");
-        scissorCompClass.classList.remove("game-img-clicked");
-    } else if (computerChoose === 2) {
-        paperCompClass.classList.add("game-img-clicked");
-        scissorCompClass.classList.remove("game-img-clicked");
-        rockCompClass.classList.remove("game-img-clicked");
-    } else if (computerChoose === 3) {
-        scissorCompClass.classList.add("game-img-clicked");
-        rockCompClass.classList.remove("game-img-clicked");
-        paperCompClass.classList.remove("game-img-clicked");
-    }
-}
