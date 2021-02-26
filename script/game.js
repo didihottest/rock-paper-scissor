@@ -18,42 +18,45 @@ let computerScores = 0;
 let playerChooseHistory = [];
 let computerChooseHistory = [];
 
+// action when rock paper scissor button pressed
+function clickAction(humanChoosen) {
+    let humanAction = new PlayerAction(humanChoosen);
+    let computerAction = new PlayerAction();
+    let choiceOfHuman = humanAction.humanChoice();
+    let choiceOfComputer = computerAction.computerChoiceLogic();
+    let game = new GameLogic(choiceOfHuman, choiceOfComputer);
+    let choosenStyle = new ChoiceMarker(choiceOfHuman, choiceOfComputer)
+    console.log(`player choose ${humanChoosen}`);
+    playerChooseHistory.push(humanChoosen);
+    console.log(`player choice history ${playerChooseHistory}`);
+    choosenStyle.playerEffect();
+    choosenStyle.comEffect();
+    game.playGame();
+}
+
 // player choose action listener
 rockPlayerClass.addEventListener("click", function () {
-    let rockAction = new Action(choices[0]);
-    console.log(`player choose ${choices[0]}`);
-    playerChooseHistory.push(choices[0]);
-    console.log(`player choice history ${playerChooseHistory}`);
-    rockAction.playerEffect();
-    rockAction.comEffect();
-    rockAction.playGame();
+    humanChoosen = choices[0];
+    clickAction(humanChoosen);
 });
 
 paperPlayerClass.addEventListener("click", function () {
-    let paperAction = new Action(choices[1]);
-    console.log(`player choose ${choices[1]}`);
-    playerChooseHistory.push(choices[1]);
-    console.log(`player choice history ${playerChooseHistory}`);
-    paperAction.playerEffect();
-    paperAction.comEffect();
-    paperAction.playGame();
+    humanChoosen = choices[1];
+    clickAction(humanChoosen);
 });
 
 scissorPlayerClass.addEventListener("click", function () {
-    let scissorAction = new Action(choices[2]);
-    console.log(`player choose ${choices[2]}`);
-    playerChooseHistory.push(choices[2]);
-    console.log(`player choice history ${playerChooseHistory}`);
-    scissorAction.playerEffect();
-    scissorAction.comEffect();
-    scissorAction.playGame();
+    humanChoosen = [choices[2]];
+    clickAction(humanChoosen);
 });
 
 // action class when player has choosen
-class Action {
-    constructor(playerChoose){
+class PlayerAction {
+    constructor(playerChoose) {
         this.playerChoose = playerChoose;
-        this.computerChoose = this.computerChoiceLogic();
+    }
+    humanChoice() {
+        return this.playerChoose;
     }
     // computer random choice logic 
     computerChoiceLogic() {
@@ -63,18 +66,24 @@ class Action {
         console.log(`computer choice history ${computerChooseHistory}`);
         return computerChoosen;
     }
+}
 
+class ChoiceMarker {
+    constructor(human, computer) {
+        this.human = human;
+        this.computer = computer;
+    }
     // padding effect when player has choosen
-    playerEffect(){
-        if (this.playerChoose === "rock") {
+    playerEffect() {
+        if (this.human === "rock") {
             rockPlayerClass.classList.add("game-img-clicked");
             paperPlayerClass.classList.remove("game-img-clicked");
             scissorPlayerClass.classList.remove("game-img-clicked");
-        } else if (this.playerChoose === "paper") {
+        } else if (this.human === "paper") {
             paperPlayerClass.classList.add("game-img-clicked");
             scissorPlayerClass.classList.remove("game-img-clicked");
             rockPlayerClass.classList.remove("game-img-clicked");
-        } else if (this.playerChoose === "scissor") {
+        } else if (this.human === "scissor") {
             scissorPlayerClass.classList.add("game-img-clicked");
             rockPlayerClass.classList.remove("game-img-clicked");
             paperPlayerClass.classList.remove("game-img-clicked");
@@ -82,42 +91,50 @@ class Action {
     }
     // padding effect when computer has choosen
     comEffect() {
-        if (this.computerChoose === "rock") {
+        if (this.computer === "rock") {
             rockCompClass.classList.add("game-img-clicked");
             paperCompClass.classList.remove("game-img-clicked");
             scissorCompClass.classList.remove("game-img-clicked");
-        } else if (this.computerChoose === "paper") {
+        } else if (this.computer === "paper") {
             paperCompClass.classList.add("game-img-clicked");
             scissorCompClass.classList.remove("game-img-clicked");
             rockCompClass.classList.remove("game-img-clicked");
-        } else if (this.computerChoose === "scissor") {
+        } else if (this.computer === "scissor") {
             scissorCompClass.classList.add("game-img-clicked");
             rockCompClass.classList.remove("game-img-clicked");
             paperCompClass.classList.remove("game-img-clicked");
         }
     }
-    // game logic
+}
+
+// game logic
+class GameLogic {
+    
+    constructor(human, computer) {
+        this.human = human;
+        this.computer = computer;
+    }
+
     playGame() {
-        if (this.playerChoose === this.computerChoose) {
+        if (this.human === this.computer) {
             this.bothDraw();
             console.log(`Draw`);
-        } else if (this.playerChoose === "rock" && this.computerChoose === "paper" || 
-            this.playerChoose === "paper" && this.computerChoose === "scissor" || 
-            this.playerChoose === "scissor" && this.computerChoose === "rock") {
+        } else if (this.human === "rock" && this.computer === "paper" ||
+            this.human === "paper" && this.computer === "scissor" ||
+            this.human === "scissor" && this.computer === "rock") {
             this.computerWin();
-            computerScores ++;
-            console.log(`${this.computerChoose} over ${this.playerChoose} Computer Wins`);
-        } else if (this.playerChoose === "rock" && this.computerChoose === "scissor" || 
-            this.playerChoose === "paper" && this.computerChoose === "rock" || 
-            this.playerChoose === "scissor" && this.computerChoose === "paper") {
+            computerScores++;
+            console.log(`${this.computer} over ${this.human} Computer Wins`);
+        } else if (this.human === "rock" && this.computer === "scissor" ||
+            this.human === "paper" && this.computer === "rock" ||
+            this.human === "scissor" && this.computer === "paper") {
             this.playerWin();
-            console.log(`${this.playerChoose} over ${this.computerChoose} Player Wins`);
-            playerScores ++;
+            console.log(`${this.human} over ${this.computer} Player Wins`);
+            playerScores++;
         }
 
         console.log(`Player Scores : ${playerScores} Computer Scores : ${computerScores}`);
     }
-
     // match indicators 
     bothDraw() {
         winLose.classList.remove("vs");
@@ -125,24 +142,21 @@ class Action {
         winLose.classList.add("draw");
         winLose.innerHTML = "DRAW";
     }
-    
+
     playerWin() {
         winLose.classList.remove("vs");
         winLose.classList.remove("draw");
         winLose.classList.add("win-or-lose");
         winLose.innerHTML = "PLAYER 1 WIN";
     }
-    
+
     computerWin() {
         winLose.classList.remove("vs");
         winLose.classList.remove("draw");
         winLose.classList.add("win-or-lose");
         winLose.innerHTML = "COM WIN";
     }
-
-
 }
-
 // refresh button
 document.querySelector(".refresh").addEventListener("click", function () {
     location.reload();
