@@ -46,7 +46,7 @@ paperPlayerClass.addEventListener("click", function () {
 });
 
 scissorPlayerClass.addEventListener("click", function () {
-    humanChoosen = [choices[2]];
+    humanChoosen = choices[2];
     clickAction(humanChoosen);
 });
 
@@ -109,7 +109,7 @@ class ChoiceMarker {
 
 // game logic
 class GameLogic {
-    
+
     constructor(human, computer) {
         this.human = human;
         this.computer = computer;
