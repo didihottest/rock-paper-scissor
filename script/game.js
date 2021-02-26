@@ -18,22 +18,6 @@ let computerScores = 0;
 let playerChooseHistory = [];
 let computerChooseHistory = [];
 
-// action when rock paper scissor button pressed
-function clickAction(humanChoosen) {
-    let humanAction = new PlayerAction(humanChoosen);
-    let computerAction = new PlayerAction();
-    let choiceOfHuman = humanAction.humanChoice();
-    let choiceOfComputer = computerAction.computerChoiceLogic();
-    let game = new GameLogic(choiceOfHuman, choiceOfComputer);
-    let choosenStyle = new ChoiceMarker(choiceOfHuman, choiceOfComputer)
-    console.log(`player choose ${humanChoosen}`);
-    playerChooseHistory.push(humanChoosen);
-    console.log(`player choice history ${playerChooseHistory}`);
-    choosenStyle.playerEffect();
-    choosenStyle.comEffect();
-    game.playGame();
-}
-
 // player choose action listener
 rockPlayerClass.addEventListener("click", function () {
     humanChoosen = choices[0];
@@ -49,6 +33,22 @@ scissorPlayerClass.addEventListener("click", function () {
     humanChoosen = choices[2];
     clickAction(humanChoosen);
 });
+
+// action when rock paper scissor button pressed
+function clickAction(humanChoosen) {
+    let humanAction = new PlayerAction(humanChoosen);
+    let computerAction = new PlayerAction();
+    let choiceOfHuman = humanAction.humanChoice();
+    let choiceOfComputer = computerAction.computerChoiceLogic();
+    let game = new GameLogic(choiceOfHuman, choiceOfComputer);
+    let choosenStyle = new ChoiceMarker(choiceOfHuman, choiceOfComputer)
+    console.log(`player choose ${humanChoosen}`);
+    playerChooseHistory.push(humanChoosen);
+    console.log(`player choice history ${playerChooseHistory}`);
+    choosenStyle.playerEffect();
+    choosenStyle.comEffect();
+    game.playGame();
+}
 
 // action class when player has choosen
 class PlayerAction {
