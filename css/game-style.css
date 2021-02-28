@@ -7,6 +7,7 @@ h1 {
 body {
     font-family: 'Open Sans', sans-serif;
     height: 100%;
+    background-color: #9C835F;
 }
 
 .container-fluid {
@@ -20,7 +21,6 @@ body {
 }
 
 .main-container {
-    background-color: #9C835F;
     height: auto;
 }
 

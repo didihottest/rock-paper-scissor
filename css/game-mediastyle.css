@@ -76,6 +76,10 @@
         margin:0;
     }
 
+    .refresh-img {
+        max-height: 51px;
+    }
+
     /* game-section-end */
 
     /* refresh-section-start */
