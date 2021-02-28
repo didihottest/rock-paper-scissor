@@ -31,6 +31,11 @@
         font-size: 4rem;
     }
 
+    .win-or-lose {
+        font-size: 2rem;
+        white-space: nowrap;
+    }
+
 
 
     /* game-section-end */
@@ -40,6 +45,10 @@
 }
 
 @media (max-width:576px) {
+
+    h1 {
+        line-height: 1.5rem;
+    }
 
     /* main-title-start */
 
@@ -58,10 +67,13 @@
 
     .draw {
         font-size: 0.9rem;
+        margin:0;
+        padding:25% 0;
     }
 
     .win-or-lose {
         font-size: 0.9rem;
+        margin:0;
     }
 
     /* game-section-end */

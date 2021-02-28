@@ -147,14 +147,14 @@ class GameLogic {
         winLose.classList.remove("vs");
         winLose.classList.remove("draw");
         winLose.classList.add("win-or-lose");
-        winLose.innerHTML = "PLAYER 1 WIN";
+        winLose.innerHTML = "PLAYER 1 <br>WIN";
     }
 
     computerWin() {
         winLose.classList.remove("vs");
         winLose.classList.remove("draw");
         winLose.classList.add("win-or-lose");
-        winLose.innerHTML = "COM WIN";
+        winLose.innerHTML = "COM <br>WIN";
     }
 }
 // refresh button
