@@ -1,14 +1,14 @@
 // Document Selector
-let rockPlayerClass = document.querySelector(".rock-p");
-let paperPlayerClass = document.querySelector(".paper-p");
-let scissorPlayerClass = document.querySelector(".scissor-p");
-let rockCompClass = document.querySelector(".rock-c");
-let paperCompClass = document.querySelector(".paper-c");
-let scissorCompClass = document.querySelector(".scissor-c");
-let winLose = document.querySelector(".win-lose");
+const rockPlayerClass = document.querySelector(".rock-p");
+const paperPlayerClass = document.querySelector(".paper-p");
+const scissorPlayerClass = document.querySelector(".scissor-p");
+const rockCompClass = document.querySelector(".rock-c");
+const paperCompClass = document.querySelector(".paper-c");
+const scissorCompClass = document.querySelector(".scissor-c");
+const winLose = document.querySelector(".win-lose");
 
 // choices option
-let choices = ["rock", "paper", "scissor"];
+const choices = ["rock", "paper", "scissor"];
 
 // scores
 let playerScores = 0;
